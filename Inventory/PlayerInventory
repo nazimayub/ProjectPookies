@@ -1,28 +1,36 @@
+/* This houses the inventory, which is just a 2D array, the first value holding the item ID and the second holding stack size.
+   It also holds two functions which interact with the system while also checking if stuff is valid or not. */
 // By Joshua Wang
 
 class PlayerInventory
 {
-  
+	// Not sure if something needs to go here.
 }
 
+/* Inserts an item into a specific slot, making sure we can, and possibly tossing out a different item. */
 void insertItem (int index, int item)
 {
-	if (inv[index, 0] != 0)
-	{
-		discardItem (index)
-	}
+	// If we're adding onto a stack and the limit has already been reached, we're just not letting them put in the item.
 	if (item == inv[index, 0])
 	{
-    // The below if-statement is almost definitely not going to work, we'll have to create a new method in Items to get stackLimit.
+		// The below if-statement is almost definitely not going to work, we'll have to create a new method in Items to get stackLimit.
+		// Also, merge it with the above conditional once we get Items working.
 		if (inv[index, 1] == Items.item.stackLimit)
 		{
 			return;
 		}
-		inv[index, 1] += 1;
 	}
+	// Essentially throwing out the old item if it doesn't match the item we're putting in.
+	else if (inv[index, 0] != 0)
+	{
+		discardItem (index)
+	}
+	// Making sure we have the right index, and incrementing by 1 (either there's nothing, or we're below stack limit)
 	inv[index, 0] = item;
+	inv[index, 1] += 1;
 }
 
+/* Just setting the inventory slot to have nothing with stack size of nothing. */
 void discardItem (int index)
 {
 	// Remember to actually have something throwing the stuff onto the ground.
@@ -30,6 +38,7 @@ void discardItem (int index)
 	inv[index, 1] = 0;
 }
 
+// Not sure if this should go here or at the top with class PlayerInventory
 int main()
 {
 	PlayerInventory inv[10][2];
