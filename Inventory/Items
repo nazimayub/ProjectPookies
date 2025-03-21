@@ -1,1 +1,2 @@
-
+/* This file will hold all of the items and their unique properties, as well as any method that directly interacts with these items.
+   Each item will have its own unique integer id, and then have its sub-properties. */
