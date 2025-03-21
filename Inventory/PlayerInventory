@@ -1,1 +1,36 @@
-/* This code will eventually handle how inventory is managed and its data stored.
+// By Joshua Wang
+
+class PlayerInventory
+{
+  
+}
+
+void insertItem (int index, int item)
+{
+	if (inv[index, 0] != 0)
+	{
+		discardItem (index)
+	}
+	if (item == inv[index, 0])
+	{
+    // The below if-statement is almost definitely not going to work, we'll have to create a new method in Items to get stackLimit.
+		if (inv[index, 1] == Items.item.stackLimit)
+		{
+			return;
+		}
+		inv[index, 1] += 1;
+	}
+	inv[index, 0] = item;
+}
+
+void discardItem (int index)
+{
+	// Remember to actually have something throwing the stuff onto the ground.
+	inv[index, 0] = 0;
+	inv[index, 1] = 0;
+}
+
+int main()
+{
+	PlayerInventory inv[10][2];
+}
