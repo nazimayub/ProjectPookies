@@ -1,2 +1,44 @@
-/* This file will hold all of the items and their unique properties, as well as any method that directly interacts with these items.
-   Each item will have its own unique integer id, and then have its sub-properties. */
+/* This file contains a list of all items, each having a unique ID that is basically an index number. Also contains a couple
+   functions to interact with the mess that is the Object/attribute 2d vector thingy. */
+// By Joshua Wang
+
+/* This creates the class Items, and creates the format of the attributes for objects. */
+class Items
+{
+	public:
+		string name;
+		string discription;
+		int stackLimit;
+		// Add other attributes as needed, like atkdmg
+};
+
+// All this does is create the item objects and assign values to attributes.
+int main()
+{
+	/* This is a vector (an array that changes its size) that holds the objects of Items. Each entry has the index number 
+      (that we’ll use for ID), name, description, stackLimit and other misc stats. */
+	/* Note, would probably be more efficient to use an array, but idk how to do this specific object duckery with arrays. 
+      We might also mess with unique items that are created and deleted over the game. */
+	vector<Items> items
+	{
+		{“Nothing”, “Your God-given hands.”, 0},
+		{“A Blood Bag”, “A bag of O- type blood. ‘Medical uses only.’”, 1},
+		{“An Umbrella”, “An umbrella. Useful for portable shade.”, 1}
+	}
+}
+
+/* This function takes an index number and returns a reference to the object. */
+auto getItemObj (int id)
+{
+	// We are using auto because idfk what data type these objects have ended up being.
+	/* Also, this creates a variable (deleted at the end of the scope) whose entire purpose is to refer to the actual object
+      here in Items. */
+	auto &reference = items[id];
+	return &reference;
+}
+
+/* This function takes an index number and returns the items stack limit. */
+int getStackLimit (int id)
+{
+	return items[id, 2];
+}
