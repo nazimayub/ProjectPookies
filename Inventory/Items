@@ -16,9 +16,9 @@ class Items
 int main()
 {
 	/* This is a vector (an array that changes its size) that holds the objects of Items. Each entry has the index number 
-      (that we’ll use for ID), name, description, stackLimit and other misc stats. */
+      	   (that we’ll use for ID), name, description, stackLimit and other misc stats. */
 	/* Note, would probably be more efficient to use an array, but idk how to do this specific object duckery with arrays. 
-      We might also mess with unique items that are created and deleted over the game. */
+      	   We might also mess with unique items that are created and deleted over the game. */
 	vector<Items> items
 	{
 		{“Nothing”, “Your God-given hands.”, 0},
@@ -32,7 +32,7 @@ auto getItemObj (int id)
 {
 	// We are using auto because idfk what data type these objects have ended up being.
 	/* Also, this creates a variable (deleted at the end of the scope) whose entire purpose is to refer to the actual object
-      here in Items. */
+      	   here in Items. */
 	auto &reference = items[id];
 	return &reference;
 }
