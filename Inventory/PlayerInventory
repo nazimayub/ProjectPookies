@@ -11,26 +11,21 @@ class PlayerInventory
 void insertItem (int index, int item)
 {
 	// If we're adding onto a stack and the limit has already been reached, we're just not letting them put in the item.
-	if (item == inv[index, 0])
+	if (item == inv[index, 0] && inv[index, 1] >= Items.getStackLimit(item))
 	{
-		// The below if-statement is almost definitely not going to work, we'll have to create a new method in Items to get stackLimit.
-		// Also, merge it with the above conditional once we get Items working.
-		if (inv[index, 1] == Items.item.stackLimit)
-		{
-			return;
-		}
+		return;
 	}
-	// Essentially throwing out the old item if it doesn't match the item we're putting in.
-	else if (inv[index, 0] != 0)
+	// Essentially throwing out an old item if it exists and doesn't match the item we're putting in.
+	if (inv[index, 0] != 0 && inv[index, 0] != item)
 	{
-		discardItem (index)
+		discardItem(index);
 	}
 	// Making sure we have the right index, and incrementing by 1 (either there's nothing, or we're below stack limit)
 	inv[index, 0] = item;
 	inv[index, 1] += 1;
 }
 
-/* Just setting the inventory slot to have nothing with stack size of nothing. */
+/* Just setting the inventory slot to have nothing with a stack size of nothing. */
 void discardItem (int index)
 {
 	// Remember to actually have something throwing the stuff onto the ground.
@@ -39,6 +34,8 @@ void discardItem (int index)
 }
 
 // Not sure if this should go here or at the top with class PlayerInventory
+/* Here, we’re basically just initializing the inventory with 10 slots, each slot holding information on what item is stored
+   inside and the stack size. */
 int main()
 {
 	PlayerInventory inv[10][2];
